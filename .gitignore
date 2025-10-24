@@ -10,8 +10,8 @@ __pycache__/
 *.log
 logs_consultas.txt
 data/*
-!data/README.md
+!data/readme.md
 annotations/*
-!annotations/README.md
+!annotations/readme.md
 test/*
-!test/README.md
+!test/readme.md
