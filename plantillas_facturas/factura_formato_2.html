@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/estilo_formato2.css">
+
+</head>
+    <body>
+    <div class="contenedor">
+        <div class="header">
+        <img src="{{ logo }}" width="100"><br>
+        <h1>Factura #{{ n_factura }}</h1>
+        </div>
+        <div class="info">
+        <p><strong>Cliente:</strong> {{ nombre }} {{ apellido }}</p>
+        <p><strong>ID Cliente:</strong> {{ n_cliente }}</p>
+        <p><strong>Fecha:</strong> {{ fecha }}</p>
+        <p><strong>Hora:</strong> {{ hora }}</p>
+        <p><strong>Correo:</strong> {{ email }}</p>
+        </div>
+        <table>
+        <tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th></tr>
+        {% for item in items %}
+        <tr><td>{{ item.producto }}</td><td>{{ item.cantidad }}</td><td>${{ item.precio }}</td><td>${{ item.subtotal }}</td></tr>
+        {% endfor %}
+        </table>
+        <p class="total">Total: ${{ monto_total }}</p>
+    </div>
+    </body>
+</html>

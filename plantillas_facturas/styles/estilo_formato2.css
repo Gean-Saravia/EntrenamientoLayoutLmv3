@@ -1,0 +1,52 @@
+body {
+    font-family: 'Verdana';
+    font-size: 13px;
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 40px;
+}
+
+.contenedor {
+    background-color: white;
+    border: 3px solid #444;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #AA0000;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+.total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+img {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+}

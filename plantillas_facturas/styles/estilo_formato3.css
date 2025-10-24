@@ -1,0 +1,49 @@
+body {
+    font-family: 'Georgia';
+    font-size: 13px;
+    color: #222;
+    padding: 30px;
+    border: 2px dashed #777;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: #0044AA;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.info p {
+    margin: 2px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+.total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+img {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+}
