@@ -1,0 +1,11 @@
+.env
+*.env
+.env.local
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.log
+logs_consultas.txt

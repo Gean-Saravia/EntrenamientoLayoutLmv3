@@ -1,0 +1,13 @@
+faker
+jinja2
+weasyprint
+pillow
+numpy
+opencv-python
+pdf2image
+transformers
+torch
+tqdm
+matplotlib
+pandas
+scikit-learn
