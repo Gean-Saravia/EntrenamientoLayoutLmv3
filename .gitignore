@@ -13,3 +13,5 @@ data/*
 !data/README.md
 annotations/*
 !annotations/README.md
+test/*
+!test/README.md
