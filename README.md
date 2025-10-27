@@ -85,7 +85,7 @@ El modelo fue entrenado con las siguientes especificaciones:
 | **Learning Rate** | 5e-5 |
 | **Capas congeladas** | Al principio se congelaron 10 capas para acelerar el proceso, en el reentrenamiento ninguna (todas entrenan) |
 | **Hardware** | NVIDIA RTX 2060 (6GB VRAM) |
-| **Tiempo de entrenamiento** | ~5 horas por fold |
+| **Tiempo de entrenamiento** | ~7 horas por fold |
 
 ### Métricas de Validación Cruzada
 
