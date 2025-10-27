@@ -19,9 +19,10 @@ test/*
 # Modelos y datasets (muy pesados para que no suban al repositorio)
 resultados/modelo_*/        # Ignorar modelos
 resultados/fold_*/           # Ignorar checkpoints
-!resultados/*.npy            # Pero si subimos las  métricas
-!resultados/*.txt            # Pero subimos los  resúmenes
-datasets_layoutlmv3/         # ignoramos los datasets procesados
+!resultados/graficos/   
+!resultados/*.npy            
+!resultados/*.txt            
+datasets_layoutlmv3/         
 
 # Outputs temporales
 resultados_json/
