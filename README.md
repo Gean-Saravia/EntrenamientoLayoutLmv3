@@ -32,7 +32,7 @@ Este proyecto implementa un pipeline completo end-to-end para:
 | **Otros** | scikit-learn, python-dotenv |
 
 ## Arquitectura del Sistema
-
+```text
 ┌──────────────────────────────────────────────────────────────┐
 │                    FASE 1: GENERACIÓN DE DATOS               │
 ├──────────────────────────────────────────────────────────────┤
@@ -62,6 +62,7 @@ Este proyecto implementa un pipeline completo end-to-end para:
 │  ├─→ cargar_datos.py → Carga a SQL Server                       │
 │  └─→ app_web.py → Interfaz Flask + Chat con OpenAI              │
 └─────────────────────────────────────────────────────────────────┘
+```
 
 ### Requisitos
 
