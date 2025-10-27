@@ -32,38 +32,28 @@ Este proyecto implementa un pipeline completo end-to-end para:
 | **Otros** | scikit-learn, python-dotenv |
 
 ## Arquitectura del Sistema
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                    FASE 1: GENERACIÓN DE DATOS               │
-├──────────────────────────────────────────────────────────────┤
-│  generate_pdfs.py → 10,000 facturas (PDF + PNG + JSON)       │
-│  separacion.py → Split 80/20 (train/test)                    │
-│  preprocesar_ocr.py → PaddleOCR + etiquetado con keywords    │
-│  crear_carpetas.py → 5 folds para validación cruzada         │
-│  conversion_a_layoutlmv3.py → Formato Hugging Face Datasets  │
-└──────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│                    FASE 2: ENTRENAMIENTO                        │
-├─────────────────────────────────────────────────────────────────┤
-│  entrenar_layoutlmv3_cruzado.py                                 │
-│  - Transfer learning desde microsoft/layoutlmv3-base            │
-│  - 4 epochs por fold                                            │
-│  - Todas las capas entrenan (sin congelamiento)                 │
-│  - Batch size: 6 | Learning rate: 5e-5                          │
-│  → Genera: modelo_fold_X + métricas                             │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│                    FASE 3: PRODUCCIÓN                           │
-├─────────────────────────────────────────────────────────────────┤
-│  procesar_factura.py (Orquestador)                              │
-│  ├─→ evaluar_modelo.py → Procesa facturas nuevas                │
-│  ├─→ cargar_datos.py → Carga a SQL Server                       │
-│  └─→ app_web.py → Interfaz Flask + Chat con OpenAI              │
-└─────────────────────────────────────────────────────────────────┘
-```
 
+### FASE 1: GENERACIÓN DE DATOS
+| Paso | Script | Descripción |
+|------|--------|-------------|
+| 1 | `generate_pdfs.py` | Genera 10,000 facturas (PDF + PNG + JSON) |
+| 2 | `separacion.py` | Split 80/20 (train/test) |
+| 3 | `preprocesar_ocr.py` | PaddleOCR + etiquetado con keywords |
+| 4 | `crear_carpetas.py` | 5 folds para validación cruzada |
+| 5 | `conversion_a_layoutlmv3.py` | Conversión a formato Hugging Face Datasets |
+
+### FASE 2: ENTRENAMIENTO
+| Script | Detalles |
+|--------|----------|
+| `entrenar_layoutlmv3_cruzado.py` | Transfer learning desde microsoft/layoutlmv3-base<br>4 epochs por fold<br>Todas las capas entrenan (sin congelamiento)<br>Batch size: 6, Learning rate: 5e-5<br>Genera: modelo_fold_X + métricas |
+
+### FASE 3: PRODUCCIÓN
+| Componente | Función |
+|------------|---------|
+| `procesar_factura.py` | Orquestador principal |
+| └─ `evaluar_modelo.py` | Procesa facturas nuevas |
+| └─ `cargar_datos.py` | Carga resultados a SQL Server |
+| └─ `app_web.py` | Interfaz Flask + Chat con OpenAI |
 ### Requisitos
 
 - Python 3.8+
