@@ -15,3 +15,18 @@ annotations/*
 !annotations/readme.md
 test/*
 !test/readme.md
+
+# Modelos y datasets (muy pesados para que no suban al repositorio)
+resultados/modelo_*/        # Ignorar modelos
+resultados/fold_*/           # Ignorar checkpoints
+!resultados/*.npy            # Pero si subimos las  métricas
+!resultados/*.txt            # Pero subimos los  resúmenes
+datasets_layoutlmv3/         # ignoramos los datasets procesados
+
+# Outputs temporales
+resultados_json/
+
+# IDE
+.vscode/
+*.ipynb_checkpoints/
+*.ipynb

@@ -62,18 +62,28 @@ def convertir_a_layoutlmv3(data, img_folder):
             print(f"Registro no valido, omitido: {e}")
             continue
 
-        img_path = None
-        for root, _, files in os.walk(img_folder):
-            if img_name in files:
-                img_path = os.path.join(root, img_name)
-                break
+        #img_path = None
+        #for root, _, files in os.walk(img_folder):
+            #if img_name in files:
+                #img_path = os.path.join(root, img_name)
+                #break
 
-        if img_path is None:
-            print(f"No se encontro la imagen para {img_name}, omitida.")
+        formato = img_name.split('_')[0] + '_' + img_name.split('_')[1]  # formato_1
+        img_path = DATA_DIR / formato / "train" / img_name
+
+        if not img_path.exists():
+            # Si no está en train, buscar en test
+            img_path = DATA_DIR / formato / "test" / img_name
+            
+        if not img_path.exists():
+            print(f"No se encontró la imagen para {img_name}, omitida.")
             continue
 
-        # Simulacion de tamaño para la normalización (1000x1000 si no se conoce)
-        width, height = 1000, 1000
+        img_path = str(img_path)
+
+
+        # Simulacion de tamaño para la normalización (1000x1000 si no se conoce) (al final usamos el tamaño fijo que se genero es 1654x2339)
+        width, height = 1654, 2339
         normalized_bboxes = [normalizar_bbox(b, width, height) for b in bboxes]
 
         registros.append({

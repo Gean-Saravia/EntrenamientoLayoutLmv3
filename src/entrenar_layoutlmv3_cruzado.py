@@ -22,7 +22,7 @@ os.makedirs(OUTPUT_PATH, exist_ok=True)
 
 NUM_FOLDS = int(os.getenv("NUM_FOLDS", "5"))
 NUM_LABELS = int(os.getenv("NUM_LABELS", "9"))
-EPOCHS = int(os.getenv("EPOCHS", "1"))
+EPOCHS = int(os.getenv("EPOCHS", "4"))
 BATCH_SIZE = int(os.getenv("BATCH_SIZE", "4"))
 LEARNING_RATE = float(os.getenv("LEARNING_RATE", "5e-5"))
 
@@ -65,9 +65,9 @@ def entrenar_fold(fold_num):
     ).to(device)
 
     # Congelamos las primeras 10 capas para acelerar el entrenamiento (a futuro lo podemos sacar para que entrene el modelo)
-    for name, param in model.named_parameters():
-        if "encoder.layer" in name and any(f"layer.{i}." in name for i in range(10)):
-            param.requires_grad = False
+    #for name, param in model.named_parameters():
+        #if "encoder.layer" in name and any(f"layer.{i}." in name for i in range(10)):
+            #param.requires_grad = False
 
     all_labels = sorted(set(sum([ex["labels"] for ex in dataset["train"]], [])))
     label_map = {label: i for i, label in enumerate(all_labels)}
@@ -169,7 +169,10 @@ def entrenar_fold(fold_num):
 #pipeline que se ejecuta el archivo
 if __name__ == "__main__":
     metricas_folds = []
-    for i in range(1, NUM_FOLDS + 1):
+    #for i in range(1, NUM_FOLDS + 1):
+    #Cambiamos solo para la carpeta 3 debido a que nos habia dado mejor metrica con 1 epoch (Se eligio la 3 debido al rendimiento que dio con 1 epoch)
+    #buscamos entrenar solo 1 carpeta con mas aprendzaje por eso mismo ses le descongelo las 10 capas.
+    for i in [3]:
         try:
             res = entrenar_fold(i)
             metricas_folds.append(res)

@@ -77,14 +77,14 @@ def asignar_etiqueta_palabra(word, labels_json):
         score3 = 0.6 if (word_norm in ref_norm or ref_norm in word_norm) else 0
         
         keywords = {
-            'n_cliente': ['cliente', 'ncliente', 'cllente'],
-            'n_factura': ['factura', 'nfactura', 'invoice'],
-            'fecha': ['fecha', 'date'],
-            'hora': ['hora', 'time'],
-            'email': ['email', 'mail', '@'],
-            'nombre': ['nombre', 'name'],
-            'apellido': ['apellido', 'surname'],
-            'monto_total': ['total', 'monto', 'amount'],
+            'n_cliente': ['cliente', 'ncliente', 'n°cliente', 'id', 'idcliente', 'nro', 'numero'],
+            'n_factura': ['factura', 'nfactura', 'n°factura', '#', 'invoice', 'nro', 'numero'],
+            'fecha': ['fecha', 'date', 'dia'],
+            'hora': ['hora', 'time', 'horario'],
+            'email': ['email', 'mail', 'correo', '@'],
+            'nombre': ['nombre', 'name', 'cliente'],
+            'apellido': ['apellido', 'surname', 'last'],
+            'monto_total': ['total', 'monto', 'amount', 'importe', 'sum', 'pagar'],
         }
         
         score4 = 0
@@ -157,7 +157,7 @@ def procesar_directorio(split):
         os.remove(salida_path)
 
     formatos = [f for f in DATA_PATH.iterdir() 
-                if f.is_dir() and f.name.startswith("formato_") and f.name != "formato_5"]
+            if f.is_dir() and f.name.startswith("formato_")]
 
     # Recolectar todas las tareas
     tareas = []

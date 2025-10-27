@@ -5,19 +5,39 @@
     <link rel="stylesheet" href="styles/estilo_formato5.css">
 </head>
 <body>
+    <div class="acento-superior"></div>
     <div class="contenedor">
-        <img src="{{ logo }}" width="100">
-        <h1>Factura N° {{ n_factura }}</h1>
-        <p><strong>Cliente:</strong> {{ nombre }} {{ apellido }}</p>
-        <p><strong>N° Cliente:</strong> {{ n_cliente }}</p>
-        <p><strong>Fecha:</strong> {{ fecha }} - <strong>Hora:</strong> {{ hora }}</p>
-        <p><strong>Email:</strong> {{ email }}</p>
+        <div class="header-flex">
+            <div>
+                <h1>Factura N° {{ n_factura }}</h1>
+            </div>
+            <div>
+                <img src="{{ logo }}" width="100">
+            </div>
+        </div>
+        
+        <div class="info-cliente">
+            <p><strong>Cliente:</strong> {{ nombre }} {{ apellido }}</p>
+            <p><strong>N° Cliente:</strong> {{ n_cliente }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+        </div>
+
+        <div class="fecha-hora">
+            <span><strong>Fecha:</strong> {{ fecha }}</span>
+            <span><strong>Hora:</strong> {{ hora }}</span>
+        </div>
+
         <table>
-        <tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th></tr>
-        {% for item in items %}
-        <tr><td>{{ item.producto }}</td><td>{{ item.cantidad }}</td><td>${{ item.precio }}</td><td>${{ item.subtotal }}</td></tr>
-        {% endfor %}
+            <thead>
+                <tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th></tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr><td>{{ item.producto }}</td><td>{{ item.cantidad }}</td><td>${{ item.precio }}</td><td>${{ item.subtotal }}</td></tr>
+                {% endfor %}
+            </tbody>
         </table>
+        
         <p class="total">Monto total: ${{ monto_total }}</p>
     </div>
 </body>
