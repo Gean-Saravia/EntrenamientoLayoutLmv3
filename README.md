@@ -215,12 +215,12 @@ python src/crear_carpetas.py
 ### 6. Convertir a formato LayoutLMv3
 python src/conversion_a_layoutlmv3.py
 
-### FASE 2: ENTRENAMIENTO
+## FASE 2: ENTRENAMIENTO
 python src/entrenar_layoutlmv3_cruzado.py
 
-### FASE 3: PRODUCCIÓN (Agregar imagenes de facturas en la carpeta test)
-####python src/procesar_factura.py
-####Este mismo si su tabla local y sus datos configurados en el env estan correctos, lo que hará será ejecutar:
-####evaluar_modelo.py (genera json con los resultados de las imagenes)
-####cargar_datos.py (cargara los json generados por el sistema a la bd local)
-####app_web.py (Inicia la interaccion)
+## FASE 3: PRODUCCIÓN (Agregar imagenes de facturas en la carpeta test)
+#### python src/procesar_factura.py
+#### Este mismo si su tabla local y sus datos configurados en el env estan correctos, lo que hará será ejecutar:
+#### evaluar_modelo.py (genera json con los resultados de las imagenes)
+#### cargar_datos.py (cargara los json generados por el sistema a la bd local)
+#### app_web.py (Inicia la interaccion)
