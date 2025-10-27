@@ -33,15 +33,15 @@ Este proyecto implementa un pipeline completo end-to-end para:
 
 ## Arquitectura del Sistema
 
-┌─────────────────────────────────────────────────────────────────┐
-│                    FASE 1: GENERACIÓN DE DATOS                  │
-├─────────────────────────────────────────────────────────────────┤
-│  generate_pdfs.py → 10,000 facturas (PDF + PNG + JSON)          │
-│  separacion.py → Split 80/20 (train/test)                       │
-│  preprocesar_ocr.py → PaddleOCR + etiquetado con keywords       │
-│  crear_carpetas.py → 5 folds para validación cruzada            │
-│  conversion_a_layoutlmv3.py → Formato Hugging Face Datasets     │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                    FASE 1: GENERACIÓN DE DATOS               │
+├──────────────────────────────────────────────────────────────┤
+│  generate_pdfs.py → 10,000 facturas (PDF + PNG + JSON)       │
+│  separacion.py → Split 80/20 (train/test)                    │
+│  preprocesar_ocr.py → PaddleOCR + etiquetado con keywords    │
+│  crear_carpetas.py → 5 folds para validación cruzada         │
+│  conversion_a_layoutlmv3.py → Formato Hugging Face Datasets  │
+└──────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────────┐
 │                    FASE 2: ENTRENAMIENTO                        │
@@ -93,10 +93,10 @@ El modelo fue entrenado con las siguientes especificaciones:
 
 | Métrica | Fold 1 (capas congeladas) | Fold 3 (capas descongeladas) | Mejora |
 |---------|---------------------------|------------------------------|--------|
-| **F1 Score** | 0.5106 (51%) | **0.5516 (55%)** | +4.1% ✅ |
-| **Accuracy** | 0.5261 (53%) | **0.5746 (57%)** | +4.9% ✅ |
+| **F1 Score** | 0.5106 (51%) | **0.5516 (55%)** | +4.1% |
+| **Accuracy** | 0.5261 (53%) | **0.5746 (57%)** | +4.9% |
 | **Precision** | 0.6957 (70%) | 0.6728 (67%) | -2.3% |
-| **Recall** | 0.5261 (53%) | **0.5746 (57%)** | +4.9% ✅ |
+| **Recall** | 0.5261 (53%) | **0.5746 (57%)** | +4.9% |
 
 **Promedio de 2 folds completados:**
 - **F1 promedio:** 0.5311 (53%)
@@ -155,7 +155,7 @@ El modelo demostró capacidad práctica para extraer información de facturas re
    - Más epochs mejorarían pero con riesgo de overfitting, si pasamos de 4 a 10 este mismo podria generar una memorizacion de nuestro modelo y no terminaría de aprender.
 
 
-   ##  Mejoras Futuras
+##  Mejoras Futuras
 
 ### 1. Optimización del Modelo
 
@@ -182,10 +182,10 @@ Se planea desarrollar una **aplicación web pública** para que cualquier usuari
 #### Características Planificadas
 
 **Uso del Sistema:**
-```
+
 Usuario sube PDF → Conversión PDF→PNG automática → OCR + LayoutLMv3 
 → Extracción de campos → SQL Server → Visualización de resultados
-```
+
 
 **Funcionalidades principales:**
 - **Carga masiva de PDFs:** Procesamiento por mayor cantidad
@@ -197,30 +197,30 @@ Usuario sube PDF → Conversión PDF→PNG automática → OCR + LayoutLMv3
 **Tiempo estimado de procesamiento:** 3-5 segundos por factura
 
 **Cómo usar:**
-# 1. Generar facturas sintéticas (10,000 PDFs)
+### 1. Generar facturas sintéticas (10,000 PDFs)
 python src/generate_pdfs.py
 
-# 2. Separar páginas individuales
+### 2. Separar páginas individuales
 python src/separacion.py
 
-# 3. Procesar con OCR y generar anotaciones
+### 3. Procesar con OCR y generar anotaciones
 python src/preprocesar_ocr.py
 
-# 4. Verificar distribución de etiquetas (opcional)
+### 4. Verificar distribución de etiquetas (opcional)
 python src/contar_etiquetas.py
 
-# 5. Dividir en 5 folds para validación cruzada
+### 5. Dividir en 5 folds para validación cruzada
 python src/crear_carpetas.py
 
-# 6. Convertir a formato LayoutLMv3
+### 6. Convertir a formato LayoutLMv3
 python src/conversion_a_layoutlmv3.py
 
 ### FASE 2: ENTRENAMIENTO
 python src/entrenar_layoutlmv3_cruzado.py
 
 ### FASE 3: PRODUCCIÓN (Agregar imagenes de facturas en la carpeta test)
-python src/procesar_factura.py
-Este mismo si su tabla local y sus datos configurados en el env estan correctos, lo que hará será ejecutar:
-evaluar_modelo.py (genera json con los resultados de las imagenes)
-cargar_datos.py (cargara los json generados por el sistema a la bd local)
-app_web.py (Inicia la interaccion)
+####python src/procesar_factura.py
+####Este mismo si su tabla local y sus datos configurados en el env estan correctos, lo que hará será ejecutar:
+####evaluar_modelo.py (genera json con los resultados de las imagenes)
+####cargar_datos.py (cargara los json generados por el sistema a la bd local)
+####app_web.py (Inicia la interaccion)
