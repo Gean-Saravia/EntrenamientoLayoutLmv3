@@ -7,7 +7,7 @@ Este proyecto implementa un pipeline completo end-to-end para:
 - Entrenar un modelo LayoutLMv3 para reconocimiento de documentos
 - Extraer automáticamente campos clave (nombre, email, fecha, monto, etc.)
 - Almacenar resultados en SQL Server
-- Consultar datos mediante interfaz con ChatGPT
+- Consultar datos mediante interfaz con modelo de OpenAI
 
 
 ## Características Principales
